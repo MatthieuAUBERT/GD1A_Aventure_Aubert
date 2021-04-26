@@ -8,6 +8,10 @@ export default class Upside_world extends Phaser.Scene {
 
         //Images Preloaders
 		this.load.image('hero', 'assets/hero.png')
+		this.load.image('monster','assets/Monstres&Ennemis/monster.png')
+
+		this.load.image('border1','assets/BordureForest.png')
+		this.load.image('warp','assets/WarpToDream.png')
 
         this.load.image('Tileset', 'assets/TilesetVillage.png')
 
@@ -15,10 +19,15 @@ export default class Upside_world extends Phaser.Scene {
 
 		this.cursors = this.input.keyboard.createCursorKeys()
 
+		this.load.image('life', 'assets/life.png')
+
     }
     create(){
 
         //Settings
+		this.life1 = this.add.image(10,70,'life').setScrollFactor(0).setDepth(0);
+		this.life2 = this.add.image(42,70,'life').setScrollFactor(0).setDepth(0);
+		this.life3 = this.add.image(74,70,'life').setScrollFactor(0).setDepth(0);
 
         //Mapping
         let Village = this.make.tilemap({key:'Map'});
@@ -33,9 +42,23 @@ export default class Upside_world extends Phaser.Scene {
 		const spawnPoint = Village.findObject("Objects", obj => obj.name === "Spawn Point");
 		this.player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'hero').setDepth(0);
 
+		this.monster = this.physics.add.sprite(544,480,'monster').setDepth(0);
+		this.monster1 = this.physics.add.sprite(1728,640,'monster').setDepth(0);
+		this.monster2 = this.physics.add.sprite(1152,928,'monster').setDepth(0);
+
+		this.forestborder = this.physics.add.staticGroup();
+		this.forestborder.create(1152,16,'border1').setDepth(0);
+
+		this.dreamborder = this.physics.add.staticGroup();
+		this.dreamborder.create(127,832,'warp')
+
+	
         //Animations
 
 		//Colliders
+
+		this.physics.add.collider(this.player, this.forestborder, this.warpingPlayerToForest, null, this);
+		this.physics.add.collider(this.player, this.dreamborder, this.warpingPlayerToDream, null, this);
 
         this.physics.add.collider(this.player, Background);
         
@@ -149,8 +172,14 @@ export default class Upside_world extends Phaser.Scene {
 		{
             this.player.setVelocityY(speed)
 			//this.player.anims.play('down', true)	
-		}
-
+		}		
 
     }
+
+	warpingPlayerToForest(){
+		this.scene.start('forest')
+	}
+	warpingPlayerToDream(){
+		this.scene.start('downside_world')
+	}
 }
