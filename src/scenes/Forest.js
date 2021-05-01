@@ -8,14 +8,13 @@ export default class Forest extends Phaser.Scene {
 
         //Images Preloaders
 		this.load.image('hero', 'assets/hero.png')
-		this.load.image('monster','assets/Monstres&Ennemis/monster.png')
 
-		this.load.image('border1','assets/BordureForest.png')
-		this.load.image('warp','assets/WarpToDream.png')
+		//this.load.image('border1','assets/BordureForest.png')
+		//this.load.image('warp','assets/WarpToDream.png')
 
         this.load.image('Tileset', 'assets/TilesetVillage.png')
 
-        this.load.tilemapTiledJSON('Map', 'assets/Map.json');
+        this.load.tilemapTiledJSON('Forest', 'assets/Forest.json');
 
 		this.cursors = this.input.keyboard.createCursorKeys()
 
@@ -25,40 +24,38 @@ export default class Forest extends Phaser.Scene {
 
     create(){
 
-        this.life1 = this.add.image(10,70,'life').setScrollFactor(0).setDepth(0);
-		this.life2 = this.add.image(42,70,'life').setScrollFactor(0).setDepth(0);
-		this.life3 = this.add.image(74,70,'life').setScrollFactor(0).setDepth(0);
+        this.life1 = this.add.image(10,70,'life').setScrollFactor(0).setDepth(1);
+		this.life2 = this.add.image(42,70,'life').setScrollFactor(0).setDepth(1);
+		this.life3 = this.add.image(74,70,'life').setScrollFactor(0).setDepth(1);
 
         //Mapping
-        let Village = this.make.tilemap({key:'Map'});
+        let Forest = this.make.tilemap({key:'Forest'});
 
-        let Terrain = Village.addTilesetImage('TilesetVillage','Tileset');
+        let Terrain = Forest.addTilesetImage('TilesetVillage','Tileset');
 
-        let Background = Village.createLayer('Bottom', Terrain, 0, 0).setDepth(-2);
-        let Layer1 = Village.createLayer('Bot1', Terrain, 0, 0).setDepth(-1);
-        let Layer2 = Village.createLayer('Bot 2', Terrain, 0, 0);
+        let Background = Forest.createLayer('Bot', Terrain, 0, 0).setDepth(-3);
+        let Layer1 = Forest.createLayer('Elements2', Terrain, 0, 0).setDepth(-2);
+        let Layer2 = Forest.createLayer('Elements', Terrain, 0, 0).setDepth(-1);
+		let Layer3 = Forest.createLayer('Elements3', Terrain, 0, 0);
 
 
-		const spawnPoint = Village.findObject("Objects", obj => obj.name === "Spawn Point");
-		this.player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'hero').setDepth(0);
+		const spawnPoint = Forest.findObject("Objects", obj => obj.name === "Spawn Point");
+		this.player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'hero').setDepth(1);
 
-		this.monster = this.physics.add.sprite(544,480,'monster').setDepth(0);
-		this.monster1 = this.physics.add.sprite(1728,640,'monster').setDepth(0);
-		this.monster2 = this.physics.add.sprite(1152,928,'monster').setDepth(0);
 
-		this.forestborder = this.physics.add.staticGroup();
+		/*this.forestborder = this.physics.add.staticGroup();
 		this.forestborder.create(1152,16,'border1').setDepth(0);
 
 		this.dreamborder = this.physics.add.staticGroup();
-		this.dreamborder.create(127,832,'warp')
+		this.dreamborder.create(127,832,'warp')*/
 
 	
         //Animations
 
 		//Colliders
 
-		this.physics.add.collider(this.player, this.forestborder, this.warpingPlayerToForest, null, this);
-		this.physics.add.collider(this.player, this.dreamborder, this.warpingPlayerToDream, null, this);
+		//this.physics.add.collider(this.player, this.forestborder, this.warpingPlayerToForest, null, this);
+		//this.physics.add.collider(this.player, this.dreamborder, this.warpingPlayerToDream, null, this);
 
         this.physics.add.collider(this.player, Background);
         
@@ -71,6 +68,10 @@ export default class Forest extends Phaser.Scene {
         this.physics.add.collider(this.player, Layer2);
         
         Layer2.setCollisionByProperty({collides:true});
+
+		this.physics.add.collider(this.player, Layer3);
+        
+        Layer3.setCollisionByProperty({collides:true});
 
 
 		/* const debugGraphics = this.add.graphics().setAlpha(0.75);
@@ -94,8 +95,9 @@ export default class Forest extends Phaser.Scene {
 
         //Camera
         this.cameras.main.startFollow(this.player)
-		this.cameras.main.setBounds(0,0,Village.widthInPixels, Village.heightInPixels);
-        this.physics.world.setBounds(0,0, Village.widthInPixels, Village.heightInPixels);
+		this.cameras.main.setBounds(0,0,Forest.widthInPixels, Forest.heightInPixels);
+		this.cameras.main.setZoom(1.5)
+        this.physics.world.setBounds(0,0, Forest.widthInPixels, Forest.heightInPixels);
 		this.player.setCollideWorldBounds(true);
 
         //Manette
@@ -175,11 +177,12 @@ export default class Forest extends Phaser.Scene {
 		}		
 
     }
-
+/*
 	warpingPlayerToForest(){
 		this.scene.start('forest')
 	}
 	warpingPlayerToDream(){
 		this.scene.start('downside_world')
 	}
+*/
 }

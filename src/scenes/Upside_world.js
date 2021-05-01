@@ -40,7 +40,7 @@ export default class Upside_world extends Phaser.Scene {
 
 
 		const spawnPoint = Village.findObject("Objects", obj => obj.name === "Spawn Point");
-		this.player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'hero').setDepth(0);
+		this.player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'hero').setDepth(1);
 
 		this.monster = this.physics.add.sprite(544,480,'monster').setDepth(0);
 		this.monster1 = this.physics.add.sprite(1728,640,'monster').setDepth(0);
