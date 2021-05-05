@@ -62,6 +62,30 @@
                  "width":0,
                  "x":1903,
                  "y":1086.5
+                }, 
+                {
+                 "height":0,
+                 "id":10,
+                 "name":"Spawn Point 2",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1150.67,
+                 "y":92
+                }, 
+                {
+                 "height":0,
+                 "id":11,
+                 "name":"Spawn Point 3",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":128,
+                 "y":878.667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -70,7 +94,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":10,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.5.0",
