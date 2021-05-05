@@ -77,6 +77,63 @@ export default class Forest extends Phaser.Scene {
 
 	
         //Animations
+        
+        this.anims.create({
+			key: 'normal',
+			frames: [ { key: 'hero', frame: 0 } ],
+			frameRate: 10
+		});
+		
+		this.anims.create({
+			key:'up',
+			frames: this.anims.generateFrameNumbers('hero', {frames : [ 1, 5, 9, 13 ] }),
+			frameRate: 8,
+			repeat: -1
+		})
+
+		this.anims.create({
+			key:'down',
+			frames: this.anims.generateFrameNumbers('hero', {frames : [ 0, 4, 8, 12 ] }),
+			frameRate: 8,
+			repeat: -1
+		})
+		
+
+		this.anims.create({
+			key:'right',
+			frames: this.anims.generateFrameNumbers('hero', {frames : [ 3, 7, 11, 15 ] }),
+			frameRate: 8,
+			repeat: -1
+		})
+		this.anims.create({
+			key:'left',
+			frames: this.anims.generateFrameNumbers('hero', {frames : [ 2, 6, 10, 14 ] }),
+			frameRate: 8,
+			repeat: -1
+		})
+
+		this.anims.create({
+			key: 'attackr',
+			frames: [ { key: 'hero', frame: 19 } ],
+			frameRate: 10
+		});
+
+		this.anims.create({
+			key: 'attackl',
+			frames: [ { key: 'hero', frame: 18 } ],
+			frameRate: 8
+		});
+
+		this.anims.create({
+			key: 'attacku',
+			frames: [ { key: 'hero', frame: 17 } ],
+			frameRate: 8
+		});
+		this.anims.create({
+			key: 'attackd',
+			frames: [ { key: 'hero', frame: 16 } ],
+			frameRate: 8
+		});
 
 		//Colliders
 
@@ -176,22 +233,22 @@ export default class Forest extends Phaser.Scene {
         	if (paddle.right)
         	{
             	this.player.setVelocityX(speed);
-            	//this.player.anims.play('right', true);
+            	this.player.anims.play('right', true);
         	}
         	else if (paddle.left)
         	{
             	this.player.setVelocityX(-speed);
-            	//this.player.anims.play('left', true);
+            	this.player.anims.play('left', true);
         	}
             else if (paddle.up)
         	{
             	this.player.setVelocityY(-speed);
-            	//this.player.anims.play('up', true);
+            	this.player.anims.play('up', true);
         	}
             else if (paddle.down)
         	{
             	this.player.setVelocityY(speed);
-            	//this.player.anims.play('down', true);
+            	this.player.anims.play('down', true);
         	}
 
 
@@ -200,25 +257,25 @@ export default class Forest extends Phaser.Scene {
 		else if (this.cursors.up.isDown)
 		{
 			this.player.setVelocityY(-speed)
-			//this.player.anims.play('up', true);
+			this.player.anims.play('up', true);
 		}
 
 
 		else if (this.cursors.left.isDown)
 		{
             this.player.setVelocityX(-speed)
-			//this.player.anims.play('left', true)
+			this.player.anims.play('left', true)
 		}
 
 		else if (this.cursors.right.isDown)
 		{
             this.player.setVelocityX(speed)
-			//this.player.anims.play('right', true)	
+			this.player.anims.play('right', true)	
 		}
         else if (this.cursors.down.isDown)
 		{
             this.player.setVelocityY(speed)
-			//this.player.anims.play('down', true)	
+			this.player.anims.play('down', true)	
 		}		
 
     }
