@@ -14,8 +14,8 @@ export default class Forest extends Phaser.Scene {
 
         //Images Preloaders
 		this.load.image('hero', 'assets/hero.png')
+		this.load.image('ennemyF','assets/Monstres&Ennemis/Slime.png')
 
-		//this.load.image('border1','assets/BordureForest.png')
 
         this.load.image('Tileset', 'assets/TilesetVillage.png')
 
@@ -24,6 +24,7 @@ export default class Forest extends Phaser.Scene {
 		this.cursors = this.input.keyboard.createCursorKeys()
 
 		this.load.image('life', 'assets/life.png')
+		this.load.image('sword','assets/Collectibles/Sword.png')
 
     }
 
@@ -34,17 +35,17 @@ export default class Forest extends Phaser.Scene {
 		this.immune = true
 
         if (this.life == 3){
-			this.health1 = this.add.image(10,70,'life').setScrollFactor(0).setDepth(3);
-			this.health2 = this.add.image(42,70,'life').setScrollFactor(0).setDepth(3);
-			this.health3 = this.add.image(74,70,'life').setScrollFactor(0).setDepth(3);
+			this.health1 = this.add.image(32,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
+			this.health2 = this.add.image(64,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
+			this.health3 = this.add.image(96,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
 		}
 
 		else if (this.life == 2){
-			this.health1 = this.add.image(10,70,'life').setScrollFactor(0).setDepth(3);
-			this.health2 = this.add.image(42,70,'life').setScrollFactor(0).setDepth(3);
+			this.health1 = this.add.image(32,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
+			this.health2 = this.add.image(64,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
 		}
 		else if (this.life == 1){
-			this.health1 = this.add.image(10,70,'life').setScrollFactor(0).setDepth(3);
+			this.health1 = this.add.image(32,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
 		}
 
         //Mapping

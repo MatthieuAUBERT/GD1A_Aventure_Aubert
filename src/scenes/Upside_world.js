@@ -27,6 +27,8 @@ export default class Upside_world extends Phaser.Scene {
 		this.boutonAttaque = this.input.keyboard.addKey('A');
 
 		this.load.image('life', 'assets/life.png')
+		this.load.image('sword','assets/Collectibles/Sword.png')
+		this.load.image('money','assets/Collectibles/Money.png')
 
     }
     create(){
@@ -34,17 +36,17 @@ export default class Upside_world extends Phaser.Scene {
         //Settings
 
 		if (this.life == 3){
-			this.health1 = this.add.image(10,70,'life').setScrollFactor(0).setDepth(3);
-			this.health2 = this.add.image(42,70,'life').setScrollFactor(0).setDepth(3);
-			this.health3 = this.add.image(74,70,'life').setScrollFactor(0).setDepth(3);
+			this.health1 = this.add.image(32,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
+			this.health2 = this.add.image(64,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
+			this.health3 = this.add.image(96,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
 		}
 
 		else if (this.life == 2){
-			this.health1 = this.add.image(10,70,'life').setScrollFactor(0).setDepth(3);
-			this.health2 = this.add.image(42,70,'life').setScrollFactor(0).setDepth(3);
+			this.health1 = this.add.image(32,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
+			this.health2 = this.add.image(64,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
 		}
 		else if (this.life == 1){
-			this.health1 = this.add.image(10,70,'life').setScrollFactor(0).setDepth(3);
+			this.health1 = this.add.image(32,70,'life').setScrollFactor(0).setDepth(3).setScale(1.7);
 		}
         //Mapping
         let Village = this.make.tilemap({key:'Map'});
